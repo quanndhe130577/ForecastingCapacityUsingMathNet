@@ -1,0 +1,377 @@
+﻿@model IEnumerable<Entity.Models.DuLieuDuDoan>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@Scripts.Render("~/Scripts/Chart.min.js")
+<script src="~/amcharts_4.9.23/amcharts4/core.js"></script>
+<script src="~/amcharts_4.9.23/amcharts4/charts.js"></script>
+<script src="~/amcharts_4.9.23/amcharts4/themes/animated.js"></script>
+@{
+    ViewBag.Title = "Du Lieu Du Bao";
+}
+
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+
+    #chartdiv2 {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+<h2>Dữ Liệu Dự Báo :</h2>
+
+<p>
+    Hello, <%=Model.Fullname%>
+</p>
+<!--<img id="chart" src="Url.Action("DrawChart")"/>-->
+@*<canvas id="myChart" height="450" width="600"></canvas>*@
+<script>
+
+    // get data from server
+   @* var myPieChart = null;
+    $(document).ready(function () {
+        function GetData() {
+            $.ajax({
+                type: "GET",
+                url: '@//Url.Action("GetData","DuLieuDuDoan")',
+                success: function (response) {
+                    if (myPieChart != null) {
+                        myPieChart.destroy();
+                    }
+                    var time = [];
+                    var cap = [];
+                    for (var i = 0; i < response.length; i++){
+                        time.push(response[i].Date);
+                        cap.push(response[i].Capacity)
+                    }
+                    myPieChart = new Chart('myChart', {
+                        type: 'line',
+                        data: {
+                            labels: time,
+                            datasets: [
+                                {
+                                    label: 'Capacity Dự Báo',
+                                    borderColor: "#2E9AFE",
+                                    pointHoverBackgroundColor: "red",
+                                    pointBorderColor: "green",
+                                    pointBackgroundColor: "green",
+                                    pointHoverBorderWidth: 2,
+                                    data: cap,
+                                    fill: false
+                                }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'History Data',
+                                fontSize: 50
+                            },
+                            legend: {
+                                display: true,
+                                position: 'right'
+                            }
+                        }
+                    });
+                },
+                error: function (response) {
+                    //debugger;
+                    alert('eror 3');
+                }
+            });
+        };
+        GetData();
+        setInterval(GetData, 60000);
+    });
+    // only Du Bao
+     $(document).ready(function () {
+        function GetData1() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetData", "DuLieuDuDoan")',
+                success: function (response) {
+                    am4core.ready(function () {
+
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        // Themes end
+
+                        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+                        var data = [];
+                        for (var i = 0; i < response.length; i++) {
+                            if (new Date(response[i].Date) > new Date()) {
+                                data.push({ Time1: new Date(response[i].Date), CapacityDB: response[i].Capacity });
+                            }
+                            else {
+                                data.push({ Time: new Date(response[i].Date), CapacityDB: response[i].Capacity });
+                            }
+                        }
+
+                        //chart.dateFormatter.inputDateFormat = "yyyy";
+                        chart.data = data;
+
+                        // Create axes
+                        var timeAxis = chart.xAxes.push(new am4charts.DateAxis());
+                        timeAxis.renderer.minGridDistance = 60;
+                        //  timeAxis.dataFields.Date = "Time";
+                        timeAxis.title.text = "Time";
+
+                        var capacityAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                        capacityAxis.title.text = "Capacity";
+
+                        // Create series
+                        var series = chart.series.push(new am4charts.LineSeries());
+                        series.dataFields.valueY = "CapacityDB";
+                        series.dataFields.dateX = "Time";
+                        series.name = "Dự Báo"
+                        series.tooltipText = "Time : {Time}\nDự Báo : {CapacityDB}";
+                        series.strokeWidth = 3;
+                        series.stroke = am4core.color("#FA5858");
+
+                        var series1 = chart.series.push(new am4charts.LineSeries());
+                        series1.dataFields.valueY = "CapacityDB";
+                        series1.dataFields.dateX = "Time1";
+                        series1.name = "Dự Báo"
+                        series1.tooltipText = "Time : {Time}\nDự Báo : {CapacityDB}";
+                        series1.stroke = am4core.color("#FA5858");
+                        series1.strokeDasharray = "5,2";
+                        series1.strokeWidth = 3;
+
+                        chart.cursor = new am4charts.XYCursor();
+
+                        chart.legend = new am4charts.Legend();
+                    }); // end am4core.ready()
+                },
+                error: function (response) {
+                    alert('eror 4');
+                }
+            });
+        };
+        GetData1();
+        setInterval(GetData1, 60000);
+    });*@
+    // chardiv2 du bao + thuc te
+     $(document).ready(function () {
+        function GetData2() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetDataSoSanh", "DuLieuDuDoan")',
+                success: function (response) {
+                    am4core.ready(function () {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        // Themes end
+
+                        var chart = am4core.create("chartdiv2", am4charts.XYChart);
+
+                        var today = new Date();
+                        var time = today.getFullYear() + "-" + ((today.getMonth() + 1) >= 10 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1)) + "-" + (today.getDate()+1) + "T00:00:00";
+                        var data = [];
+
+                        var capacityThietke = 0.0;
+                        var capMax = 0;
+                        for (var i = 0; i < response.length; i++) {
+                            if (capMax < response[i].CapacityTT && response[i].CapacityTT != 191100) {
+                                capMax = response[i].CapacityTT;
+                            }
+                        }
+
+                        capacityThietke = capMax / 90 * 100;
+
+                        for (var i = 0; i < response.length; i++) {
+                            if (response[i].CapacityTT == 191100 || response[i].GhiTT == 191100) {
+                                if (new Date(response[i].Date) >= new Date()) {
+                                    data.push({
+                                        Time1: new Date(response[i].Date), CapacityTT: null, CapacityDB: response[i].CapacityDB, SaiSo: null,
+                                        GhiTT: null, GhiDB: response[i].GhiDB, CapacityD_1: null
+                                    });
+                                }
+                            }
+                            else {
+                                data.push({
+                                    Time: new Date(response[i].Date), CapacityTT: response[i].CapacityTT, CapacityDB: response[i].CapacityDB, SaiSo: (Math.abs(response[i].CapacityDB - response[i].CapacityTT) / capacityThietke * 100).toFixed(2) + " % ",
+                                    GhiTT: response[i].GhiTT, GhiDB: response[i].GhiDB, CapacityD_1: null
+                                });
+
+                            }
+                        }
+                        data.push({ Time: new Date(time), CapacityTT: null, CapacityDB: null, SaiSo: null, GhiTT: null, GhiDB: null, CapacityD_1: null });
+                        // get capacity yesterday
+                        $.ajax({
+                            type: "GET",
+                            url: '@Url.Action("GetYesterdayCapacity", "DuLieuLichSu")',
+                            success: function (response) {
+                                for (var i = 0; i < response.length; i++) {
+                                    data.push({
+                                        Time2: new Date(response[i].Date),
+                                        CapacityTT: null, CapacityDB: null, SaiSo: null,
+                                        GhiTT: null, GhiDB: null,
+                                        CapacityD_1: response[i].Capacity
+                                    });
+                                }
+
+                                //chart.dateFormatter.inputDateFormat = "yyyy";
+                                chart.data = data;
+        /*
+                                //Function Create series
+                                var timeAxis = chart.xAxes.push(new am4charts.DateAxis());
+                                timeAxis.renderer.minGridDistance = 60;
+                                timeAxis.title.text = "Time";
+                                timeAxis.stroke = am4core.color("orange");
+
+                                function createAxisAndSeries(field, name, opposite, strokeWidth, colorLine, opacity) {
+                                    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                                    *//*if (chart.yAxes.indexOf(valueAxis) != 0) {
+                                        valueAxis.syncWithAxis = chart.yAxes.getIndex(0);
+                                    }*//*
+
+                                    var series = chart.series.push(new am4charts.LineSeries());
+                                    series.name = name;
+                                    series.dataFields.valueY = field;
+                                    series.dataFields.dateX = "Time";
+                                    series.showOnInit = true;
+                                    series.tooltipText = "{name}: {valueY}[/]";
+                                    series.strokeWidth = strokeWidth;
+                                    series.stroke = am4core.color(colorLine);
+                                    series.yAxis = capacityAxis;
+                                    series.strokeOpacity = opacity;
+                                    valueAxis.renderer.opposite = opposite;
+                                }
+                                createAxisAndSeries("CapacityDB", "Forecast Capacity", false, 3, "#FA5858" , 1);
+                                createAxisAndSeries("CapacityTT", "Actual Capacity", false, 3, "#5858FA", 1);
+                                //createAxisAndSeries("GhiDB", "Forecast Capacity", true, 3, "#FA5858", 1);
+                                //createAxisAndSeries("GhiTT", "Forecast Capacity", true, 3, "#FA5858", 1);*/
+
+
+                                // Create axes
+                                    // hang X
+                                var timeAxis = chart.xAxes.push(new am4charts.DateAxis());
+                                timeAxis.renderer.minGridDistance = 60;
+                                timeAxis.title.text = "Time";
+                                timeAxis.stroke = am4core.color("black");
+                                // cot Y capacity
+                                var capacityAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                                capacityAxis.title.text = "MW";
+                                capacityAxis.stroke = am4core.color("black");
+                                capacityAxis.max = capacityThietke * 1.2;
+                                //cot Y ghi
+                                var ghiAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                                ghiAxis.title.text = "kWh/m2";
+                                ghiAxis.renderer.opposite = true; // dat ben phai
+                                ghiAxis.stroke = am4core.color("black");
+
+                                //series capacity du bao
+                                    // tương lai
+                                var series_cap_db_tl = chart.series.push(new am4charts.LineSeries());
+                                series_cap_db_tl.name = "Forecast Capacity"
+                                series_cap_db_tl.dataFields.valueY = "CapacityDB";
+                                series_cap_db_tl.dataFields.dateX = "Time1";
+                                series_cap_db_tl.tooltipText = "Capacity Dự Báo : {CapacityDB}";
+                                series_cap_db_tl.showOnInit = true;
+                                series_cap_db_tl.strokeWidth = 3;
+                                series_cap_db_tl.stroke = am4core.color("#5858FA");//change color for line
+                                series_cap_db_tl.yAxis = capacityAxis;
+                                series_cap_db_tl.strokeDasharray = "5,2"; // độ dài các đoạn theo thứ tự : liền - đứt - liền - ....
+
+                                // capacity yesterday
+                                var series_ghi_tt_yes = chart.series.push(new am4charts.LineSeries());
+                                series_ghi_tt_yes.name = "D-1 Capacity"
+                                series_ghi_tt_yes.dataFields.valueY = "CapacityD_1";
+                                series_ghi_tt_yes.dataFields.dateX = "Time2";
+                                series_ghi_tt_yes.tooltipText = "CapacityD_1: {CapacityD_1}";
+                                series_ghi_tt_yes.showOnInit = true;
+                                series_ghi_tt_yes.strokeWidth = 2;
+                                series_ghi_tt_yes.stroke = am4core.color("#585858");//change color for line
+                                series_ghi_tt_yes.yAxis = capacityAxis;
+                                series_ghi_tt_yes.length = false;
+                                series_ghi_tt_yes.strokeOpacity = 0.5;
+
+                                // series capacity thuc te
+                                var series_cap_tt = chart.series.push(new am4charts.LineSeries());
+                                series_cap_tt.name = "Actual Capacity"
+                                series_cap_tt.dataFields.valueY = "CapacityTT";
+                                series_cap_tt.dataFields.dateX = "Time";
+                                series_cap_tt.showOnInit = true;
+                                series_cap_tt.tooltipText = "Capacity Thực Tế: {CapacityTT}\nCapacity Dự Báo : {CapacityDB}\nSai số dự đoán : {SaiSo}";
+                                series_cap_tt.strokeWidth = 3;
+                                series_cap_tt.stroke = am4core.color("#B45F04");
+                                series_cap_tt.yAxis = capacityAxis;
+
+                                // series ghi thuc te
+                                var series_ghi_tt = chart.series.push(new am4charts.LineSeries());
+                                series_ghi_tt.name = "Actual Ghi"
+                                series_ghi_tt.dataFields.valueY = "GhiTT";
+                                series_ghi_tt.dataFields.dateX = "Time";
+                                series_ghi_tt.showOnInit = true;
+                                series_ghi_tt.tooltipText = "Ghi Thực Tế: {GhiTT}";
+                                series_ghi_tt.strokeWidth = 2;
+                                series_ghi_tt.stroke = am4core.color("green");
+                                series_ghi_tt.yAxis = ghiAxis;
+                                series_ghi_tt.strokeOpacity = 0.5;// do trong suot
+
+
+                                // series ghi du bao
+                                    //tương lai
+                                var series_ghi_db_tl = chart.series.push(new am4charts.LineSeries());
+                                series_ghi_db_tl.name = "Forecast Ghi"
+                                series_ghi_db_tl.dataFields.valueY = "GhiDB";
+                                series_ghi_db_tl.dataFields.dateX = "Time1";
+                                series_ghi_db_tl.showOnInit = true;
+                                series_ghi_db_tl.tooltipText = "Ghi Dự Báo: {GhiDB}";
+                                series_ghi_db_tl.strokeWidth = 2;
+                                series_ghi_db_tl.stroke = am4core.color("green");
+                                series_ghi_db_tl.yAxis = ghiAxis;
+                                series_ghi_db_tl.strokeOpacity = 0.5;
+                                series_ghi_db_tl.strokeDasharray = "5,2";
+
+
+                                /*series.tooltip.pointerOrientation = "vertical";
+                                series_cap_tt.tooltip.pointerOrientation = "vertical";
+                                series_ghi_tt.tooltip.pointerOrientation = "vertical";*/
+                                chart.cursor = new am4charts.XYCursor();
+                               // chart.cursor.snapToSeries = series;
+                               // chart.cursor.snapToSeries = series_cap_tt;
+
+                                //chart.cursor.xAxis = timeAxis;
+                                /*chart.scrollbarY = new am4core.Scrollbar();
+                                chart.scrollbarX = new am4core.Scrollbar();*/
+                                chart.legend = new am4charts.Legend();
+                                chart.legend.position = "bottom";
+                                var title = chart.titles.create();
+                                title.text = "Công suất và Bức xạ dự báo và thực tế ngày " + today.getDate() + "-" + ((today.getMonth() + 1) >= 10 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1)) + "-" + today.getFullYear()  ;
+                                title.fontSize = 25;
+                                title.marginBottom = 30;
+
+                                //create value Axis range for Cong Suat thiet ke
+
+                                var range = capacityAxis.axisRanges.create();
+                                range.value = capacityThietke;
+                                range.grid.stroke = am4core.color("#A4A4A4");
+                                range.grid.strokeWidth = 2;
+                                range.grid.strokeOpacity = 1;
+                                range.grid.strokeDasharray = "3,3";// ve net dut
+                                range.grid.above = true;// hien line len tren
+                                range.label.inside = true;// hien ten trong do thi
+                                range.label.text = "Nameplate capacity";
+                                range.label.fill = range.grid.stroke;// doi mau text giong voi line
+                                //range2.label.align = "right";
+                                range.label.verticalCenter = "bottom";// line o ben duoi
+                            },
+                            error: function (response) {
+                                alert("error 6");
+                            }
+                        });
+                    }); // end am4core.ready()
+                },
+                error: function (response) {
+                    alert('eror 5');
+                }
+            });
+        };
+        GetData2();
+        setInterval(GetData2, 60000);
+    });
+</script>
+@*<div id="chartdiv"></div>*@
+<div id="chartdiv2"></div>

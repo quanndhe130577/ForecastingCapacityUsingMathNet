@@ -1,0 +1,216 @@
+﻿<link href="~/Content/Login/Registration/boostrap.min.css" rel="stylesheet" />
+<script src="~/Content/Login/Registration/boostrap.min.js"></script>
+<script src="~/Content/Login/Registration/jquery.min.js"></script>
+<link href="~/Content/Login/Registration/all.css" rel="stylesheet" />
+<link href="~/Content/Login/Registration/style.css" rel="stylesheet" />
+
+@{
+    Layout = null;
+    ViewBag.Title = "SignUp";
+}
+<body>
+
+    <div class="container">
+        <div class="card bg-light" style="background-color: rgba(0,0,0,0.5) !important;">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center" style="color:#FFC312">Create Account</h4>
+                <p class="text-center" style="color:#FFC312">Get started with your free account</p>
+                <p>
+                    <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                    <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                </p>
+                <p class="divider-text">
+                    <span class="bg-light">OR</span>
+                </p>
+                <form action="/Account/AddUser" method="post">
+                    <!--Username-->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Username :  </span>
+                        </div>
+                        <input id="username" name="Username" class="form-control" placeholder="Username" type="text"
+                               onblur="CheckUsername()" onchange='hideError("errorUsername")' onkeypress='hideError("errorUsername")'>
+                    </div>
+                    <div class="errorRegistration" id="errorUsername"></div>
+                    <!--Veriyfy username-->
+                    <script>
+                        function CheckUsername() {
+                            var username = document.getElementById("username").value;
+                            $.ajax({
+                                type: "POST",
+                                dataType: 'json',
+                                data: {
+                                    username: username
+                                },
+                                url: '@Url.Action("CheckUsername", "Account")',
+                                success: function (response) {
+                                    if (response == "Fail") {
+                                        document.getElementById("errorUsername").innerText = "Username has been existed !!!"
+                                    } else {
+                                        document.getElementById("errorUsername").innerText = "";
+                                    }
+                                },
+                                error: function (response) {
+                                    alert("Can't get result !!!");
+                                }
+                            });
+                        };
+                    </script>
+                    <!--Fullname-->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Fullname : </span>
+                        </div>
+                        <input id="fullname" name="Fullname" class="form-control" placeholder="Full Name" type="text"
+                               onkeypress='hideError("errorFullname")' onchange='hideError("errorFullname")'>
+                    </div>
+                    <div class="errorRegistration" id="errorFullname"></div>
+                    <!--Lastname -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Lastname :  </span>
+                        </div>
+                        <input id="lastname" name="Lastname" class="form-control" placeholder="Last Name" type="text"
+                               onkeypress='hideError("errorLastname")' onchange='hideError("errorLastname")'>
+                    </div>
+                    <div class="errorRegistration" id="errorLastname" style="color:red"></div>
+                    <!--Phone -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Phone : </span>
+                        </div>
+                        <input id="phone" name="Phone" class="form-control" placeholder="Phone number" type="text"
+                               onkeypress='hideError("errorPhone")' onblur="checkPhone()" onchange='hideError("errorPhone")'>
+                    </div>
+                    <div class="errorRegistration" id="errorPhone" style="color:red"></div>
+                    <script>
+                        function checkPhone() {
+                            // phone number has 10 numbers
+                            var re = new RegExp("[0-9]{10}");
+                            var phone = document.getElementById("phone").value;
+                            if (!re.test(phone)) {
+                                document.getElementById("errorPhone").innerText = "Phone Number is invalid !!!";
+                            }
+                        }
+                    </script>
+                    <!-- Password -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Password : </span>
+                        </div>
+                        <input id="pass1" name="Password" class="form-control" placeholder="Create password"
+                               onkeypress='hideError("errorPassword1")' type="Password" onchange='hideError("errorPassword1")'>
+                    </div>
+                    <div class="errorRegistration" id="errorPassword1" style="color:red"></div>
+                    <!-- Re-password -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Re-password </span>
+                        </div>
+                        <input id="pass2" class="form-control" placeholder="Repeat password" type="password"
+                               onblur="checkPassword(true)" onkeypress='hideError("errorPassword2")' onchange='hideError("errorPassword2")'>
+                        <script>
+                            function checkPassword(bool) {
+                                if (bool == true) {
+                                    var pass1 = document.getElementById("pass1").value;
+                                    var pass2 = document.getElementById("pass2").value;
+                                    if (pass2 !== pass1) {
+                                        document.getElementById("errorPassword2").innerText = "Password is not correct !!!";
+                                    }
+                                } else {
+                                    document.getElementById("errorPassword2").innerText = "";
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="errorRegistration" id="errorPassword2" style="color:red"></div>
+                    <!-- Role -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Role : </span>
+                        </div>
+                        <select name="role" id="role" class="form-control">
+                            <option value="User" selected>User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="errorRole" id="errorRole" style="color:red"></div>
+                    <!-- Address -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Address : </span>
+                        </div>
+                        <input id="address" name="Address" class="form-control" placeholder="Address" type="text"
+                               onkeypress='hideError("errorAddress")' onchange='hideError("errorAddress")'>
+                    </div>
+                    <div class="errorRegistration" id="errorAddress" style="color:red"></div>
+                    <!-- IdentifyCode -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> Identify Code:  </span>
+                        </div>
+                        <input id="identifycode" name="IdentifyCode" class="form-control" placeholder="Identify Code" type="text"
+                               onkeypress='hideError("errorIdentifyCode")' onchange='hideError("errorIdentifyCode")'>
+                    </div>
+                    <div class="errorRegistration" id="errorIdentifyCode" style="color:red"></div>
+                    <!-- Button submit -->
+                    <div class="form-group">
+                        <button id="submit" type="submit" onclick="return CheckTotal()" class="btn btn-primary btn-block"> Create Account  </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center" style="color:#FFC312">Have an account? <a href="/Account/Index">Log In</a> </p>
+                </form>
+            </article>
+        </div>
+        <script>
+            function hideError(name) {
+                document.getElementById(name).innerText = "";
+            }
+            @*document.getElementById("submit").disabled = true;*@
+            @*check verify for account*@
+            function CheckTotal() {
+                var rs = true;
+                var username = document.getElementById("username").value;
+                var fullname = document.getElementById("fullname").value;
+                var lastname = document.getElementById("lastname").value;
+                var pass1 = document.getElementById("pass1").value;
+                var pass2 = document.getElementById("pass2").value;
+                var phone = document.getElementById("phone").value;
+                var address = document.getElementById("address").value;
+                var identifycode = document.getElementById("identifycode").value;
+                if (username == "" || username == null) {
+                    document.getElementById("errorUsername").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (fullname == "" || fullname == null) {
+                    document.getElementById("errorFullname").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (lastname == "" || lastname == null) {
+                    document.getElementById("errorLastname").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (pass1 == "" || pass1 == null) {
+                    document.getElementById("errorPassword1").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (pass2 == "" || pass2 == null) {
+                    document.getElementById("errorPassword2").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (phone == "" || phone == null) {
+                    document.getElementById("errorPhone").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (address == "" || address == null) {
+                    document.getElementById("errorAddress").innerText = "You need to fill it";
+                    rs = false;
+                }
+                if (identifycode == "" || identifycode == null) {
+                    document.getElementById("errorIdentifyCode").innerText = "You need to fill it";
+                    rs = false;
+                }
+                return rs;
+            }
+        </script>
+    </div>
+</body>

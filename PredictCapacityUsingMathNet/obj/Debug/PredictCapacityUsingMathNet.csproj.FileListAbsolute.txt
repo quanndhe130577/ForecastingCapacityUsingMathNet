@@ -1,0 +1,41 @@
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.exe.config
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.exe
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.pdb
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\bin\Debug\MathNet.Numerics.dll
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\bin\Debug\MathNet.Numerics.xml
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csprojAssemblyReference.cache
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csproj.CoreCompileInputs.cache
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csproj.CopyComplete
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.exe
+C:\Users\quanh\source\repos\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.pdb
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.exe.config
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.exe
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.pdb
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\MathNet.Numerics.dll
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\MathNet.Numerics.xml
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csproj.CoreCompileInputs.cache
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csproj.CopyComplete
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.exe
+D:\E-Solution\Dự Đoán Công Suất Phát Nhà Máy Điện Mặt Trời\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.exe.config
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.exe
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\PredictCapacityUsingMathNet.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\MathNet.Numerics.dll
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\MathNet.Numerics.xml
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csproj.CoreCompileInputs.cache
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csproj.CopyComplete
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.exe
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Topshelf.dll
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Topshelf.xml
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.dll
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.xml
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.Jobs.dll
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.Plugins.dll
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.Jobs.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.Jobs.xml
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.Plugins.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Quartz.Plugins.xml
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\bin\Debug\Job.xml
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\PredictCapacityUsingMathNet\obj\Debug\PredictCapacityUsingMathNet.csprojAssemblyReference.cache

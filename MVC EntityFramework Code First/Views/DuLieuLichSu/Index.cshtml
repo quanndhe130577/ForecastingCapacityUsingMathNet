@@ -1,0 +1,160 @@
+﻿@model IEnumerable<MVC_EntityFramework_Code_First.Models.DuLieuLichSu>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@Scripts.Render("~/Scripts/Chart.min.js")
+<script src="~/amcharts_4.9.23/amcharts4/core.js"></script>
+<script src="~/amcharts_4.9.23/amcharts4/charts.js"></script>
+<script src="~/amcharts_4.9.23/amcharts4/themes/animated.js"></script>
+@{
+    ViewBag.Title = "Du Lieu Lich Su";
+}
+<style>
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+    #chartdiv2 {
+        width: 100%;
+        height: 500px;
+    }
+</style>
+<h2>Dữ Liệu Lịch Sử : </h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<!--<img id="chart" src="Url.Action("DrawChart")"/>-->
+<canvas id="myChart" height="450" width="600"></canvas>
+<script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    var time_test;
+
+    // get data from server
+    var myPieChart = null;
+    $(document).ready(function () {
+        function GetData() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetData","DuLieuLichSu")',
+                success: function (response) {
+                    if (myPieChart != null) {
+                        myPieChart.destroy();
+                    }
+
+                    var time = [];
+                    var cap = [];
+                    for (var i = 0; i < response.length; i++) {
+                        var dt = new Date(response[i].Date);
+                        if (dt.getMinutes() % 5 == 0) {
+                            time.push(response[i].Date);
+                            cap.push(response[i].Capacity);
+                        }
+                    }
+
+                    myPieChart = new Chart('myChart', {
+                        type: 'line',
+                        data: {
+                            // set X
+                            labels: time,
+                            datasets: [{
+                                label: 'Capacity',
+                                borderColor: "#2E9AFE",
+                                pointHoverBackgroundColor: "red",
+                                pointBorderColor: "green",
+                                pointBackgroundColor: "green",
+                                pointHoverBorderWidth: 2,
+                                // set Y
+                                data: cap,
+                                fill: false
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'History Data',
+                                fontSize: 50
+                            },
+                            legend: {
+                                display: true,
+                                position: 'right'
+                            }
+                        }
+                    });
+                },
+                error: function (response) {
+                    alert('eror 1');
+                }
+            });
+        };
+        GetData();
+        setInterval(GetData, 60000);
+    });
+    $(document).ready(function () {
+        function GetData1() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetData","DuLieuLichSu")',
+                success: function (response) {
+
+                    am4core.ready(function () {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        // Themes end
+
+                        var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+                        var data = [];
+                        for (var i = 0; i < response.length; i++) {
+                            var dt = new Date(response[i].Date);
+                            if (dt.getMinutes() % 5 == 0) {
+                                data.push({ Time: new Date(response[i].Date), Capacity: response[i].Capacity });
+                            }
+                        }
+
+                        //chart.dateFormatter.inputDateFormat = "yyyy";
+                        chart.data = data;
+
+                        // Create axes
+                        var timeAxis = chart.xAxes.push(new am4charts.DateAxis());
+                        timeAxis.renderer.minGridDistance = 60;
+                        //  timeAxis.dataFields.Date = "Time";
+                        timeAxis.title.text = "Time";
+
+                        var capacityAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                        capacityAxis.title.text = "WM";
+
+                        // Create series
+                        var series = chart.series.push(new am4charts.LineSeries());
+                        series.dataFields.valueY = "Capacity";
+                        series.dataFields.dateX = "Time";
+                        series.tooltipText = "{Time} : {Capacity}"
+                        series.name
+
+                        series.tooltip.pointerOrientation = "vertical";
+
+                        chart.cursor = new am4charts.XYCursor();
+                        chart.cursor.snapToSeries = series;
+
+                        chart.cursor.xAxis = timeAxis;
+                        /*chart.scrollbarY = new am4core.Scrollbar();
+                        chart.scrollbarX = new am4core.Scrollbar();*/
+
+                        chart.legend = new am4charts.Legend();
+                        chart.legend.position = "bottom";
+                        var title = chart.titles.create();
+                        title.text = "Công suất thực tế ngày " + today.getDate() + "-" + ((today.getMonth() + 1) >= 10 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1)) + "-" + today.getFullYear();
+                        title.fontSize = 25;
+                        title.marginBottom = 30;
+
+                    }); // end am4core.ready()
+                },
+                error: function (response) {
+                    alert('eror 2');
+                }
+            });
+        };
+        GetData1();
+        setInterval(GetData1, 60000);
+    });
+   
+</script>
+<div id="chartdiv"></div>
