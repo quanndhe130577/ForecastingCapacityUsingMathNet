@@ -9,6 +9,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Security;
 using Entity.Models;
+using Service;
 
 namespace MVC_EntityFramework_Code_First.Controllers
 {
@@ -24,30 +25,15 @@ namespace MVC_EntityFramework_Code_First.Controllers
             return View(db.AccountList.ToList());
         }
 
-        /*public ActionResult CheckLogin([Bind(Include = "Username,Password")] Login login)
-        {
-            foreach(var c in db.Logins)
-            {
-                if(c.Username == login.Username && c.Password == login.Password)
-                {
-                    return Redirect("~/DuLieuDuDoan/Index");
-                }
-            }
-            Session["Error"] = "Username or Password is wrong !!!";
-            Session["Er_user"] = login.Username;
-            Session["Er_pass"] = login.Password;
-            return RedirectToAction("Index");
-        }*/
         [AllowAnonymous]
         public JsonResult CheckLogin(string username, string password)
         {
             try
             {
-                var rs = db.AccountList.SingleOrDefault(x => x.Username == username);
+                var rs = AccountDAO.CheckLogin(username, password);
 
-                if (rs != null && rs.Password == MaHoaMatKhau(rs.SaltPassword + password) )
+                if (rs != null)
                 {
-
                     Session["account"] = rs;
                     return Json("Success", JsonRequestBehavior.AllowGet);
                 }
@@ -61,27 +47,17 @@ namespace MVC_EntityFramework_Code_First.Controllers
         [AllowAnonymous]
         public ActionResult AddUser([Bind(Include = "Fullname, Lastname, Username, Password, Phone, Address, IdentifyCode,Role")] Account login)
         {
-            login.SaltPassword = RandomSaltHash();
-            // ma hoa mat khau
-            login.Password = MaHoaMatKhau(login.SaltPassword + login.Password);
-            if (ModelState.IsValid)
-            {
-                db.AccountList.Add(login);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return Redirect("~/Login/Index");
+            AccountDAO.AddAccount(login);
+            return RedirectToAction("Index");
         }
 
         [AllowAnonymous]
         public JsonResult CheckUsername(string username)
         {
-            foreach (Account c in db.AccountList)
+
+            if (AccountDAO.CheckUsername(username))
             {
-                if (c.Username == username)
-                {
-                    return Json("Fail", JsonRequestBehavior.AllowGet);
-                }
+                return Json("Fail", JsonRequestBehavior.AllowGet);
             }
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
@@ -99,7 +75,7 @@ namespace MVC_EntityFramework_Code_First.Controllers
             return View(db.AccountList.ToList());
         }
         // GET: Login/Details/5
-        public ActionResult Details(int? id)
+        /*public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -202,32 +178,6 @@ namespace MVC_EntityFramework_Code_First.Controllers
             base.Dispose(disposing);
         }
 
-        private string MaHoaMatKhau(String password)
-        {
-            //Tạo MD5 
-            MD5 mh = MD5.Create();
-            //Chuyển kiểu chuổi thành kiểu byte
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(password);
-            //mã hóa chuỗi đã chuyển
-            byte[] hash = mh.ComputeHash(inputBytes);
-            //tạo đối tượng StringBuilder (làm việc với kiểu dữ liệu lớn)
-            String sb = "";
-            for (int i = 0; i < hash.Length; i++)
-            {
-                sb += hash[i].ToString("x");
-            }
-            return sb;
-        }
-
-        private string RandomSaltHash()
-        {
-            string rs = "";
-            Random rd = new Random();
-            for (int i = 0; i < 20; i++)
-            {
-                rs += Convert.ToString((Char)rd.Next(65, 90));
-            }
-            return rs;
-        }
+*/
     }
 }

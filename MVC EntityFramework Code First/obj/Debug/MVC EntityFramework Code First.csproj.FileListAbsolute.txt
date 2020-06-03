@@ -84,3 +84,6 @@ D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFrame
 D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFramework Code First\bin\EntityWeb.dll
 D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFramework Code First\bin\EntityWeb.pdb
 D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFramework Code First\bin\EntityWeb.dll.config
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFramework Code First\bin\Service.dll
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFramework Code First\bin\Service.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\MVC EntityFramework Code First\bin\Service.dll.config

@@ -914,20 +914,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\DuLieuLichSu\Create.cshtml" />
-    <Content Include="Views\DuLieuLichSu\Delete.cshtml" />
-    <Content Include="Views\DuLieuLichSu\Details.cshtml" />
-    <Content Include="Views\DuLieuLichSu\Edit.cshtml" />
     <Content Include="Views\DuLieuLichSu\Index.cshtml" />
-    <Content Include="Views\DuLieuDuDoan\Create.cshtml" />
-    <Content Include="Views\DuLieuDuDoan\Delete.cshtml" />
-    <Content Include="Views\DuLieuDuDoan\Details.cshtml" />
-    <Content Include="Views\DuLieuDuDoan\Edit.cshtml" />
     <Content Include="Views\DuLieuDuDoan\Index.cshtml" />
-    <Content Include="Views\Account\Create.cshtml" />
-    <Content Include="Views\Account\Delete.cshtml" />
-    <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\ToSignUp.cshtml" />
     <Content Include="Views\RoleDenied.cshtml" />
@@ -952,6 +940,10 @@
     <ProjectReference Include="..\EntityWeb\EntityWeb.csproj">
       <Project>{fc87811d-1051-465d-b1f9-310cb4e42417}</Project>
       <Name>EntityWeb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{3ea83896-be79-4987-8295-46a2a9c14892}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\DuLieuDbContext.cs" />
     <Compile Include="Models\DuLieuDuDoan.cs" />
     <Compile Include="Models\DuLieuLichSu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

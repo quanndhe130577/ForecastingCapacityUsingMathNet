@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PredictCapacityUsingMathNet", "PredictCapacityUsingMathNet.csproj", "{16541FE2-85C2-41FB-B1C0-E25D96AE3182}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPredict", "..\WebPredict\WebPredict.csproj", "{7DF34731-70A2-4084-A9CA-B7AA448FFE3A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC EntityFramework Code First", "..\MVC EntityFramework Code First\MVC EntityFramework Code First.csproj", "{1E19F900-E21F-4DA5-A46B-CA817420E607}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityWeb", "..\EntityWeb\EntityWeb.csproj", "{FC87811D-1051-465D-B1F9-310CB4E42417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "..\Service\Service.csproj", "{3EA83896-BE79-4987-8295-46A2A9C14892}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{16541FE2-85C2-41FB-B1C0-E25D96AE3182}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16541FE2-85C2-41FB-B1C0-E25D96AE3182}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16541FE2-85C2-41FB-B1C0-E25D96AE3182}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DF34731-70A2-4084-A9CA-B7AA448FFE3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DF34731-70A2-4084-A9CA-B7AA448FFE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DF34731-70A2-4084-A9CA-B7AA448FFE3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DF34731-70A2-4084-A9CA-B7AA448FFE3A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E19F900-E21F-4DA5-A46B-CA817420E607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E19F900-E21F-4DA5-A46B-CA817420E607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E19F900-E21F-4DA5-A46B-CA817420E607}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{FC87811D-1051-465D-B1F9-310CB4E42417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC87811D-1051-465D-B1F9-310CB4E42417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC87811D-1051-465D-B1F9-310CB4E42417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA83896-BE79-4987-8295-46A2A9C14892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA83896-BE79-4987-8295-46A2A9C14892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA83896-BE79-4987-8295-46A2A9C14892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA83896-BE79-4987-8295-46A2A9C14892}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
