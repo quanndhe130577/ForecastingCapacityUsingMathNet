@@ -71,7 +71,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\JobGetData.cs" />
     <Compile Include="Schedule\JobPredictData.cs" />
-    <Compile Include="Schedule\SchedulerGetData.cs" />
     <Compile Include="SoLieu.cs" />
     <Compile Include="SoLieuDuDoan.cs" />
   </ItemGroup>

@@ -9,3 +9,4 @@ D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\EntityWeb\obj\D
 D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\EntityWeb\obj\Debug\EntityWeb.csproj.CopyComplete
 D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\EntityWeb\obj\Debug\EntityWeb.dll
 D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\EntityWeb\obj\Debug\EntityWeb.pdb
+D:\E-Solution\DuDoanCongSuatPhat\ForecastingCapacityUsingMathNet\EntityWeb\obj\Debug\EntityWeb.csprojAssemblyReference.cache
